@@ -3,7 +3,7 @@ import { stickersData } from '../data/stickers';
 
 
 export default function Catalog() {
-  const phoneNumber = "89363659"; // Tu número de WhatsApp sin signos ni espacios
+  const phoneNumber = "50689363659"; // Tu número de WhatsApp sin signos ni espacios
   const [selectedSticker, setSelectedSticker] = useState(null);
   const [customerName, setCustomerName] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
