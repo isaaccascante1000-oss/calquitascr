@@ -63,6 +63,12 @@ const rotationsByCode = {
 
 const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'R', 'Z', 'X', 'Y', 'M', 'N', 'P', 'Q'];
 
+// Historial oficial de ventas registradas tras confirmación de pago completo
+export const salesHistory = [];
+
+// Lista de códigos de propiedades/calcas vendidas
+export const soldCodes = salesHistory.map(item => item.code);
+
 export const stickersData = Object.keys(imageModules).map((path, index) => {
   const fileName = path.split('/').pop().replace('.jpg', '').toLowerCase();
 
@@ -73,12 +79,14 @@ export const stickersData = Object.keys(imageModules).map((path, index) => {
   const uniqueCode = `${baseKit}${uniqueLetter}`;
 
   const rotationAngle = rotationsByCode[uniqueCode] !== undefined ? rotationsByCode[uniqueCode] : 0;
+  const isSold = soldCodes.includes(uniqueCode);
 
   return {
     id: fileName,
     code: uniqueCode,
     price: '₡300',
     rotate: rotationAngle,
-    image: imageModules[path].default
+    image: imageModules[path].default,
+    status: isSold ? 'vendido' : 'disponible'
   };
 });

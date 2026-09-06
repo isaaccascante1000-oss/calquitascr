@@ -1,0 +1,490 @@
+/* =========================================================
+   CATALOG STYLES - RESPONSIVE (DESKTOP & MOBILE 3-COLUMNS)
+   ========================================================= */
+
+.catalog-section {
+  padding: 3.5rem 2rem;
+  background-color: transparent;
+  min-height: 100vh;
+  color: #ffffff;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.catalog-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header & Search */
+.catalog-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.catalog-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.catalog-subtitle {
+  color: #a1a1aa;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+.catalog-search-wrapper {
+  margin-top: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.catalog-search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid #27272a;
+  background-color: #18181b;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.catalog-search-input:focus {
+  border-color: #0070f3;
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
+}
+
+.catalog-filter-tabs {
+  display: inline-flex;
+  background: #18181b;
+  padding: 0.3rem;
+  border-radius: 10px;
+  border: 1px solid #27272a;
+}
+
+.catalog-filter-btn {
+  padding: 0.4rem 1.1rem;
+  border-radius: 7px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: transparent;
+  color: #a1a1aa;
+  transition: all 0.2s;
+}
+
+.catalog-filter-btn.active {
+  background-color: #25D366;
+  color: #09090b;
+}
+
+/* =========================================================
+   GRID & PRODUCT CARDS (DESKTOP)
+   ========================================================= */
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.8rem;
+}
+
+.catalog-card {
+  background-color: #18181b;
+  border-radius: 16px;
+  padding: 1.2rem;
+  text-align: center;
+  border: 1px solid #27272a;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justifyContent: space-between;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.catalog-card:hover:not(.sold) {
+  transform: translateY(-6px);
+  border-color: #0070f3;
+  box-shadow: 0 12px 30px rgba(0, 112, 243, 0.15);
+}
+
+.catalog-card.sold {
+  border-color: rgba(239, 68, 68, 0.35);
+  cursor: default;
+  opacity: 0.8;
+}
+
+.catalog-card-image-box {
+  position: relative;
+  background-color: #09090b;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+  overflow: hidden;
+  border: 1px solid #27272a;
+  box-sizing: border-box;
+}
+
+.catalog-card-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.7));
+  transition: transform 0.3s ease;
+}
+
+.catalog-card-info {
+  margin: 0.5rem 0;
+}
+
+.catalog-card-title {
+  margin: 1.2rem 0 0.2rem;
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.catalog-card-price {
+  margin: 0 0 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #25D366;
+}
+
+.catalog-card-price.sold-text {
+  color: #a1a1aa;
+}
+
+.catalog-card-btn {
+  width: 100%;
+  padding: 0.75rem 0;
+  background-color: #25D366;
+  color: #09090b;
+  border: none;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.catalog-card-btn:hover:not(:disabled) {
+  background-color: #20ba5a;
+  box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
+}
+
+.catalog-card-btn:disabled {
+  background-color: #27272a;
+  color: #71717a;
+  cursor: not-allowed;
+}
+
+/* Superposición AGOTADA / VENDIDA */
+.catalog-sold-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border-radius: inherit;
+}
+
+.catalog-sold-badge {
+  background-color: #dc2626;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 0.45rem 1.2rem;
+  border-radius: 6px;
+  transform: rotate(-12deg);
+  box-shadow: 0 4px 18px rgba(220, 38, 38, 0.7);
+  border: 2px solid #ffffff;
+  text-transform: uppercase;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   MODAL DE DETALLES / RESERVA
+   ========================================================= */
+
+.catalog-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.catalog-modal-content {
+  background-color: #18181b;
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 460px;
+  width: 95%;
+  text-align: center;
+  position: relative;
+  border: 1px solid #27272a;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
+}
+
+.catalog-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: #a1a1aa;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.catalog-modal-close:hover {
+  color: #ffffff;
+}
+
+.catalog-modal-image-box {
+  background-color: #09090b;
+  border-radius: 14px;
+  padding: 1rem;
+  margin: 1.2rem 0;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid #27272a;
+}
+
+.catalog-modal-image {
+  object-fit: contain;
+  filter: drop-shadow(0px 8px 20px rgba(0, 0, 0, 0.8));
+}
+
+.catalog-modal-title {
+  font-size: 1.6rem;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.catalog-modal-price {
+  font-size: 1.3rem;
+  color: #25D366;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+}
+
+.catalog-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.catalog-modal-input {
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #3f3f46;
+  background-color: #09090b;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.catalog-modal-input:focus {
+  border-color: #25D366;
+}
+
+.catalog-modal-submit {
+  padding: 0.9rem;
+  background-color: #25D366;
+  color: #09090b;
+  border: none;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.25);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.catalog-modal-submit:hover {
+  background-color: #20ba5a;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN: MOBILE OPTIMIZATIONS (< 768px)
+   FORZADO EXACTO DE 3 COLUMNAS FLUIDAS Y LEGIBLES
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .catalog-section {
+    padding: 1.8rem 0.6rem;
+  }
+
+  .catalog-header {
+    margin-bottom: 1.8rem;
+  }
+
+  .catalog-title {
+    font-size: 1.7rem;
+  }
+
+  .catalog-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .catalog-search-wrapper {
+    margin-top: 1.2rem;
+    gap: 0.8rem;
+  }
+
+  .catalog-search-input {
+    max-width: 100%;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.85rem;
+    border-radius: 10px;
+  }
+
+  .catalog-filter-btn {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.78rem;
+  }
+
+  /* Grid forzado a exactamente 3 columnas */
+  .catalog-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px; /* Espaciado uniforme para 3 columnas en pantallas móviles */
+  }
+
+  .catalog-card {
+    padding: 0.55rem 0.4rem;
+    border-radius: 12px;
+  }
+
+  .catalog-card-image-box {
+    height: 100px; /* Altura optimizada para vista móvil de 3 columnas */
+    padding: 0.35rem;
+    border-radius: 8px;
+  }
+
+  .catalog-card-title {
+    margin: 0.45rem 0 0.1rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+
+  .catalog-card-price {
+    margin: 0 0 0.45rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .catalog-card-btn {
+    padding: 0.45rem 0.2rem;
+    font-size: 0.72rem;
+    border-radius: 6px;
+    font-weight: 800;
+  }
+
+  /* Cartel de AGOTADA ajustado proporcionalmente para tarjetas compactas */
+  .catalog-sold-badge {
+    font-size: 0.62rem;
+    padding: 0.22rem 0.5rem;
+    letter-spacing: 1px;
+    border-width: 1.5px;
+    box-shadow: 0 2px 10px rgba(220, 38, 38, 0.7);
+  }
+
+  /* Modal móvil */
+  .catalog-modal-content {
+    padding: 1.4rem 1.1rem;
+    border-radius: 16px;
+  }
+
+  .catalog-modal-image-box {
+    height: 220px;
+    margin: 0.9rem 0;
+  }
+
+  .catalog-modal-title {
+    font-size: 1.3rem;
+  }
+
+  .catalog-modal-price {
+    font-size: 1.15rem;
+    margin-bottom: 0.9rem;
+  }
+}
+
+/* Pantallas extra pequeñas (< 380px) */
+@media (max-width: 380px) {
+  .catalog-section {
+    padding: 1.5rem 0.4rem;
+  }
+
+  .catalog-grid {
+    gap: 6px;
+  }
+
+  .catalog-card {
+    padding: 0.45rem 0.3rem;
+    border-radius: 10px;
+  }
+
+  .catalog-card-image-box {
+    height: 85px;
+    padding: 0.25rem;
+  }
+
+  .catalog-card-title {
+    font-size: 0.75rem;
+  }
+
+  .catalog-card-price {
+    font-size: 0.72rem;
+  }
+
+  .catalog-card-btn {
+    padding: 0.4rem 0.1rem;
+    font-size: 0.65rem;
+  }
+
+  .catalog-sold-badge {
+    font-size: 0.55rem;
+    padding: 0.18rem 0.4rem;
+  }
+}

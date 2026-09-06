@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { stickersData } from '../data/stickers';
-
+import './Catalog.css';
 
 export default function Catalog() {
   const phoneNumber = "50689363659"; // Tu número de WhatsApp sin signos ni espacios
   const [selectedSticker, setSelectedSticker] = useState(null);
   const [customerName, setCustomerName] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [filterView, setFilterView] = useState('disponibles'); // 'disponibles' | 'todos'
 
   // Bloquea el scroll de la página cuando el modal está abierto
   useEffect(() => {
@@ -36,129 +37,109 @@ export default function Catalog() {
     setCustomerName('');
   };
 
-  // Filtrado de calcas por buscador
-  const filteredStickers = stickersData.filter((s) =>
-    s.code.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filtrado de calcas por estado y buscador
+  const filteredStickers = stickersData.filter((s) => {
+    const matchesSearch = s.code.toLowerCase().includes(searchTerm.toLowerCase());
+    if (filterView === 'disponibles') {
+      return matchesSearch && s.status !== 'vendido';
+    }
+    return matchesSearch;
+  });
 
   return (
-    <section style={{ padding: '3.5rem 2rem', backgroundColor: 'transparent', minHeight: '100vh', color: '#ffffff' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <section className="catalog-section">
+      <div className="catalog-container">
         
         {/* Encabezado */}
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 style={{ fontSize: '2.4rem', fontWeight: '800', color: '#ffffff', letterSpacing: '-0.5px' }}>
+        <div className="catalog-header">
+          <h2 className="catalog-title">
             Inventario de Calcas
           </h2>
-          <p style={{ color: '#a1a1aa', marginTop: '0.5rem', fontSize: '1rem' }}>
+          <p className="catalog-subtitle">
             Todas las calcas a ₡300 cada una • Envíos y entregas a convenir
           </p>
 
-          {/* Buscador */}
-          <div style={{ marginTop: '1.8rem', display: 'flex', justifyContent: 'center' }}>
+          {/* Buscador y Filtros */}
+          <div className="catalog-search-wrapper">
             <input 
               type="text" 
               placeholder="🔍 Buscar por código (ej: K10A, K20...)"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{
-                width: '100%',
-                maxWidth: '400px',
-                padding: '0.8rem 1.2rem',
-                borderRadius: '12px',
-                border: '1px solid #27272a',
-                backgroundColor: '#18181b',
-                color: '#fff',
-                fontSize: '0.95rem',
-                outline: 'none',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-              }}
+              className="catalog-search-input"
             />
+
+            {/* Pestañas de Filtro Disponibles / Todos */}
+            <div className="catalog-filter-tabs">
+              <button
+                onClick={() => setFilterView('disponibles')}
+                className={`catalog-filter-btn ${filterView === 'disponibles' ? 'active' : ''}`}
+              >
+                Disponibles ({stickersData.filter(s => s.status !== 'vendido').length})
+              </button>
+              <button
+                onClick={() => setFilterView('todos')}
+                className={`catalog-filter-btn ${filterView === 'todos' ? 'active' : ''}`}
+              >
+                Ver Todo ({stickersData.length})
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Grid del Catálogo */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: '1.8rem' }}>
-          {filteredStickers.map((item) => (
-            <div 
-              key={item.id} 
-              style={{ 
-                backgroundColor: '#18181b', 
-                borderRadius: '16px', 
-                padding: '1.2rem', 
-                textAlign: 'center',
-                border: '1px solid #27272a',
-                boxShadow: '0 10px 25px rgba(0,0,0,0.3)',
-                transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-                cursor: 'pointer',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.borderColor = '#0070f3';
-                e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 112, 243, 0.15)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = '#27272a';
-                e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)';
-              }}
-              onClick={() => setSelectedSticker(item)}
-            >
-              <div style={{ 
-                backgroundColor: '#09090b', 
-                borderRadius: '12px', 
-                padding: '1rem', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                height: '180px', 
-                overflow: 'hidden',
-                border: '1px solid #27272a'
-              }}>
-                <img 
-                  src={item.image} 
-                  alt={item.code} 
-                  style={{ 
-                    width: item.rotate % 180 !== 0 ? '160px' : 'auto',
-                    height: item.rotate % 180 !== 0 ? '160px' : 'auto',
-                    maxWidth: '100%', 
-                    maxHeight: '100%', 
-                    objectFit: 'contain',
-                    transform: `rotate(${item.rotate}deg)`,
-                    filter: 'drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.7))' 
-                  }} 
-                />
-              </div>
+        {/* Grid del Catálogo (4 columnas en escritorio, 3 columnas en móviles) */}
+        <div className="catalog-grid">
+          {filteredStickers.map((item) => {
+            const isSold = item.status === 'vendido';
 
-              <div>
-                <h3 style={{ margin: '1.2rem 0 0.2rem', fontSize: '1.25rem', color: '#ffffff', fontWeight: '800', letterSpacing: '0.5px' }}>
-                  {item.code}
-                </h3>
-                <p style={{ margin: '0 0 1.2rem', fontSize: '1.2rem', fontWeight: '800', color: '#25D366' }}>
-                  {item.price}
-                </p>
-              </div>
-
-              <button
-                style={{ 
-                  width: '100%', 
-                  padding: '0.75rem 0', 
-                  backgroundColor: '#25D366', 
-                  color: '#09090b', 
-                  border: 'none',
-                  borderRadius: '10px', 
-                  fontWeight: '800',
-                  fontSize: '0.95rem',
-                  cursor: 'pointer'
+            return (
+              <div 
+                key={item.id} 
+                className={`catalog-card ${isSold ? 'sold' : ''}`}
+                onClick={() => {
+                  if (!isSold) setSelectedSticker(item);
                 }}
               >
-                Reservar Calca
-              </button>
-            </div>
-          ))}
+                <div className="catalog-card-image-box">
+                  {/* Superposición CSS cuando el estado es VENDIDO / AGOTADO */}
+                  {isSold && (
+                    <div className="catalog-sold-overlay">
+                      <span className="catalog-sold-badge">
+                        AGOTADA
+                      </span>
+                    </div>
+                  )}
+
+                  <img 
+                    src={item.image} 
+                    alt={item.code} 
+                    className="catalog-card-image"
+                    style={{ 
+                      transform: `rotate(${item.rotate}deg)`,
+                      width: item.rotate % 180 !== 0 ? '100%' : 'auto',
+                      height: item.rotate % 180 !== 0 ? '100%' : 'auto'
+                    }} 
+                  />
+                </div>
+
+                <div className="catalog-card-info">
+                  <h3 className="catalog-card-title">
+                    {item.code}
+                  </h3>
+                  <p className={`catalog-card-price ${isSold ? 'sold-text' : ''}`}>
+                    {isSold ? 'Agotada' : item.price}
+                  </p>
+                </div>
+
+                <button
+                  disabled={isSold}
+                  className="catalog-card-btn"
+                >
+                  {isSold ? 'AGOTADA' : 'Reservar Calca'}
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -166,115 +147,52 @@ export default function Catalog() {
       {selectedSticker && (
         <div 
           onClick={() => setSelectedSticker(null)}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            backgroundColor: 'rgba(0, 0, 0, 0.85)',
-            backdropFilter: 'blur(8px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000,
-            padding: '1rem'
-          }}
+          className="catalog-modal-overlay"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            style={{
-              backgroundColor: '#18181b',
-              padding: '2rem',
-              borderRadius: '20px',
-              maxWidth: '460px',
-              width: '95%',
-              textAlign: 'center',
-              position: 'relative',
-              border: '1px solid #27272a',
-              boxShadow: '0 20px 50px rgba(0,0,0,0.6)'
-            }}
+            className="catalog-modal-content"
           >
             <button 
               onClick={() => setSelectedSticker(null)}
-              style={{
-                position: 'absolute',
-                top: '16px',
-                right: '18px',
-                background: 'none',
-                border: 'none',
-                color: '#a1a1aa',
-                fontSize: '1.4rem',
-                cursor: 'pointer'
-              }}
+              className="catalog-modal-close"
             >
               ✕
             </button>
 
             {/* Cuadro de la imagen con ZOOM en el centro */}
-            <div style={{ 
-              backgroundColor: '#09090b', 
-              borderRadius: '14px', 
-              padding: '1rem', 
-              margin: '1.2rem 0', 
-              height: '300px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              overflow: 'hidden',
-              border: '1px solid #27272a'
-            }}>
+            <div className="catalog-modal-image-box">
               <img 
                 src={selectedSticker.image} 
                 alt={selectedSticker.code} 
+                className="catalog-modal-image"
                 style={{ 
                   width: selectedSticker.rotate % 180 !== 0 ? '240px' : '100%', 
                   height: selectedSticker.rotate % 180 !== 0 ? '240px' : '100%', 
-                  objectFit: 'contain',
-                  /* Se combina la rotación con la escala (zoom a 1.85x) */
-                  transform: `rotate(${selectedSticker.rotate}deg) scale(1.85)`,
-                  filter: 'drop-shadow(0px 8px 20px rgba(0, 0, 0, 0.8))'
+                  transform: `rotate(${selectedSticker.rotate}deg) scale(1.85)`
                 }} 
               />
             </div>
 
-            <h3 style={{ fontSize: '1.6rem', color: '#fff', fontWeight: '800' }}>
+            <h3 className="catalog-modal-title">
               Calca {selectedSticker.code}
             </h3>
-            <p style={{ fontSize: '1.3rem', color: '#25D366', fontWeight: '800', marginBottom: '1.2rem' }}>
+            <p className="catalog-modal-price">
               {selectedSticker.price}
             </p>
 
-            <form onSubmit={handleReservation} style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+            <form onSubmit={handleReservation} className="catalog-modal-form">
               <input 
                 type="text" 
                 placeholder="Nombre aquí" 
                 value={customerName} 
                 onChange={(e) => setCustomerName(e.target.value)}
-                style={{ 
-                  padding: '0.85rem 1rem', 
-                  borderRadius: '10px', 
-                  border: '1px solid #3f3f46', 
-                  backgroundColor: '#09090b', 
-                  color: '#fff', 
-                  fontSize: '0.95rem',
-                  outline: 'none'
-                }}
+                className="catalog-modal-input"
                 required
               />
               <button 
                 type="submit"
-                style={{ 
-                  padding: '0.9rem', 
-                  backgroundColor: '#25D366', 
-                  color: '#09090b', 
-                  border: 'none', 
-                  borderRadius: '10px', 
-                  fontWeight: '800', 
-                  fontSize: '1rem',
-                  cursor: 'pointer',
-                  boxShadow: '0 0 20px rgba(37, 211, 102, 0.25)'
-                }}
+                className="catalog-modal-submit"
               >
                 Confirmar Reserva por WhatsApp
               </button>

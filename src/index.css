@@ -28,3 +28,10 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #25D366;
 }
+
+/* Ajustes globales móviles */
+@media (max-width: 768px) {
+  header {
+    padding: 0.8rem 1rem !important;
+  }
+}
