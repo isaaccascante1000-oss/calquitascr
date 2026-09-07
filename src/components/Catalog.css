@@ -109,7 +109,7 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justifyContent: space-between;
+  justify-content: space-between;
   box-sizing: border-box;
   user-select: none;
 }

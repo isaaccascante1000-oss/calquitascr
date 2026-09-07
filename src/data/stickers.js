@@ -64,10 +64,19 @@ const rotationsByCode = {
 const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'R', 'Z', 'X', 'Y', 'M', 'N', 'P', 'Q'];
 
 // Historial oficial de ventas registradas tras confirmación de pago completo
-export const salesHistory = [];
+export const salesHistory = [
+  {
+    code: 'K30Z',
+    client: 'Jonathan',
+    price: '₡300',
+    date: '2026-09-07',
+    status: 'vendido',
+    paymentStatus: 'completo'
+  }
+];
 
 // Lista de códigos de propiedades/calcas vendidas
-export const soldCodes = salesHistory.map(item => item.code);
+export const soldCodes = salesHistory.map(item => item.code.toUpperCase());
 
 export const stickersData = Object.keys(imageModules).map((path, index) => {
   const fileName = path.split('/').pop().replace('.jpg', '').toLowerCase();
@@ -79,7 +88,7 @@ export const stickersData = Object.keys(imageModules).map((path, index) => {
   const uniqueCode = `${baseKit}${uniqueLetter}`;
 
   const rotationAngle = rotationsByCode[uniqueCode] !== undefined ? rotationsByCode[uniqueCode] : 0;
-  const isSold = soldCodes.includes(uniqueCode);
+  const isSold = soldCodes.includes(uniqueCode.toUpperCase());
 
   return {
     id: fileName,
