@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { stickersData } from '../data/stickers';
 import './Catalog.css';
+import SinpeCard from './SinpeCard';
 
 export default function Catalog() {
   const phoneNumber = "50689363659"; // Tu número de WhatsApp sin signos ni espacios
@@ -59,6 +60,11 @@ export default function Catalog() {
             Todas las calcas a ₡300 cada una • Envíos y entregas a convenir
           </p>
 
+          {/* Tarjeta de SINPE Móvil justo en el encabezado superior */}
+          <div style={{ textAlign: 'center', margin: '15px 0' }}>
+            <SinpeCard numeroSinpe="85643342" />
+          </div>
+
           {/* Buscador y Filtros */}
           <div className="catalog-search-wrapper">
             <input 
@@ -87,7 +93,7 @@ export default function Catalog() {
           </div>
         </div>
 
-        {/* Grid del Catálogo (4 columnas en escritorio, 3 columnas en móviles) */}
+        {/* Grid del Catálogo */}
         <div className="catalog-grid">
           {filteredStickers.map((item) => {
             const isSold = item.status === 'vendido';
@@ -101,7 +107,6 @@ export default function Catalog() {
                 }}
               >
                 <div className="catalog-card-image-box">
-                  {/* Superposición CSS cuando el estado es VENDIDO / AGOTADO */}
                   {isSold && (
                     <div className="catalog-sold-overlay">
                       <span className="catalog-sold-badge">
@@ -143,7 +148,7 @@ export default function Catalog() {
         </div>
       </div>
 
-      {/* Modal con ZOOM enfocado a la calca */}
+      {/* Modal con ZOOM */}
       {selectedSticker && (
         <div 
           onClick={() => setSelectedSticker(null)}
@@ -160,7 +165,6 @@ export default function Catalog() {
               ✕
             </button>
 
-            {/* Cuadro de la imagen con ZOOM en el centro */}
             <div className="catalog-modal-image-box">
               <img 
                 src={selectedSticker.image} 

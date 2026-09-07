@@ -11,53 +11,43 @@ export const SinpeCard = ({ numeroSinpe = "85643342", titular = "CalquitasCR" })
 
   return (
     <div style={{
-      border: '1px solid #e2e8f0',
+      backgroundColor: '#12161a',
+      border: '1px solid #22c55e',
       borderRadius: '12px',
-      padding: '16px',
-      backgroundColor: '#ffffff',
-      maxWidth: '320px',
-      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-      fontFamily: 'sans-serif'
+      padding: '12px 18px',
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '14px',
+      boxShadow: '0 0 15px rgba(34, 197, 94, 0.2)',
+      color: '#ffffff',
+      margin: '15px auto'
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-        <span style={{ fontSize: '20px' }}>📱</span>
-        <h4 style={{ margin: 0, fontSize: '16px', fontWeight: 'bold' }}>Pago por SINPE Móvil</h4>
-      </div>
-      
-      <p style={{ margin: '4px 0', fontSize: '14px', color: '#4a5568' }}>
-        Titular: <strong>{titular}</strong>
-      </p>
-      
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justify: 'space-between',
-        backgroundColor: '#f7fafc',
-        border: '1px dashed #cbd5e0',
-        borderRadius: '8px',
-        padding: '8px 12px',
-        marginTop: '10px'
-      }}>
-        <span style={{ fontSize: '18px', fontWeight: 'bold', letterSpacing: '1px' }}>
-          {numeroSinpe}
+      <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+        <span style={{ fontSize: '11px', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+          Paga vía SINPE Móvil
         </span>
-        <button
-          onClick={copiarAlPortapapeles}
-          style={{
-            backgroundColor: copiado ? '#38a169' : '#3182ce',
-            color: '#ffffff',
-            border: 'none',
-            borderRadius: '6px',
-            padding: '6px 12px',
-            cursor: 'pointer',
-            fontSize: '12px',
-            fontWeight: 'bold',
-            transition: 'background-color 0.2s'
-          }}
-        >
-          {copiado ? '¡Copiado!' : 'Copiar'}
-        </button>
+        <span style={{ fontSize: '18px', fontWeight: 'bold', color: '#ffffff', letterSpacing: '1px' }}>
+          📱 {numeroSinpe}
+        </span>
       </div>
+
+      <button
+        onClick={copiarAlPortapapeles}
+        style={{
+          backgroundColor: copiado ? '#16a34a' : '#22c55e',
+          color: '#000000',
+          border: 'none',
+          borderRadius: '8px',
+          padding: '8px 14px',
+          fontWeight: 'bold',
+          fontSize: '13px',
+          cursor: 'pointer',
+          transition: 'all 0.2s ease',
+          boxShadow: copiado ? 'none' : '0 0 10px rgba(34, 197, 94, 0.4)'
+        }}
+      >
+        {copiado ? '✓ Copiado' : 'Copiar'}
+      </button>
     </div>
   );
 };
