@@ -1,4 +1,4 @@
-export default function Hero({ onGoToCatalog }) {
+export default function Hero({ onExplore }) {
   return (
     <section style={{
       minHeight: '88vh',
@@ -49,7 +49,7 @@ export default function Hero({ onGoToCatalog }) {
       </p>
 
       <button 
-        onClick={onGoToCatalog}
+        onClick={onExplore}
         style={{
           padding: '1.1rem 2.8rem',
           fontSize: '1.1rem',

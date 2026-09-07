@@ -78,6 +78,63 @@ export const salesHistory = [
 // Lista de códigos de propiedades/calcas vendidas
 export const soldCodes = salesHistory.map(item => item.code.toUpperCase());
 
+// Diccionario para clasificar manualmente las calcas exactas por su código
+const explicitCategories = {
+  'K10A': 'letras',      // Pones el código de la calca exacto : y la categoría entre comillas
+  'K30H': 'letras',     // Las categorías válidas son: 'letras', 'logos', 'criaturas', 'premium'
+  'K90H': 'letra ',
+  'K11N': 'criaturas',
+  'K70P': 'logos',
+  'K10F': 'premium',
+  'K20D': 'letras',
+  'K10B': 'letras',
+  'K10E': 'letras',
+  'K10G': 'letras',
+  'K10R': 'letras',
+  'K11Y': 'letras',
+  'K20C': 'letras',
+  'K20A': 'letras',
+  'K30R': 'letras',
+  'K40X': 'letras',
+  'K40N': 'letras',
+  'K40B': 'letras',
+  'K50E': 'premium',
+  'K50G': 'letras',
+  'K80D': 'letras',
+  'K80E': 'letras',
+  'K80G': 'letras',
+  'K70Q': 'letras',
+  'K70A': 'logos',
+  'K70B': 'logos',
+  'K90Z': 'criaturas',
+  'K90Y': 'logos',
+  'K30H': 'letras',
+  'K10Z': 'premium',
+  'K30G': 'premium',
+  'K60Z': 'criaturas',
+  'K80C': 'criaturas',
+  'K11N': 'premium',
+  'K40P': 'premium',
+
+
+
+};
+
+// Función auxiliar para asignar la categoría de forma precisa
+const getCategoryForSticker = (uniqueCode) => {
+  // 1. Si está definida explícitamente arriba, usa esa
+  if (explicitCategories[uniqueCode]) {
+    return explicitCategories[uniqueCode];
+  }
+
+  // 2. Clasificación automática inteligente por rangos o prefijos
+  if (uniqueCode.startsWith('K9') || uniqueCode.startsWith('K7')) return 'premium';
+  if (['K11N', 'K11M', 'K40P'].includes(uniqueCode)) return 'criaturas';
+  
+  // Por defecto, si no cae en las anteriores, se va a 'logos'
+  return 'logos';
+};
+
 export const stickersData = Object.keys(imageModules).map((path, index) => {
   const fileName = path.split('/').pop().replace('.jpg', '').toLowerCase();
 
@@ -89,6 +146,7 @@ export const stickersData = Object.keys(imageModules).map((path, index) => {
 
   const rotationAngle = rotationsByCode[uniqueCode] !== undefined ? rotationsByCode[uniqueCode] : 0;
   const isSold = soldCodes.includes(uniqueCode.toUpperCase());
+  const assignedCategory = getCategoryForSticker(uniqueCode);
 
   return {
     id: fileName,
@@ -96,6 +154,7 @@ export const stickersData = Object.keys(imageModules).map((path, index) => {
     price: '₡300',
     rotate: rotationAngle,
     image: imageModules[path].default,
+    category: assignedCategory, // Categoría asignada para los filtros
     status: isSold ? 'vendido' : 'disponible'
   };
 });

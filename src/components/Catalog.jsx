@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
-import { stickersData } from '../data/stickers';
+import { stickersData } from '../data/stickers.js';
 import './Catalog.css';
-import SinpeCard from './SinpeCard';
 
 export default function Catalog() {
   const phoneNumber = "50689363659"; // Tu número de WhatsApp sin signos ni espacios
+  const sinpeNumber = "85643342"; // Número para el SINPE Móvil
   const [selectedSticker, setSelectedSticker] = useState(null);
   const [customerName, setCustomerName] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [filterView, setFilterView] = useState('disponibles'); // 'disponibles' | 'todos'
+  const [selectedCategory, setSelectedCategory] = useState('todas'); // 'todas' | 'letras' | 'logos' | 'criaturas' | 'premium'
+  const [copied, setCopied] = useState(false);
 
   // Bloquea el scroll de la página cuando el modal está abierto
   useEffect(() => {
@@ -22,6 +24,12 @@ export default function Catalog() {
       document.body.style.overflow = 'unset';
     };
   }, [selectedSticker]);
+
+  const handleCopySinpe = () => {
+    navigator.clipboard.writeText(sinpeNumber);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const handleReservation = (e) => {
     e.preventDefault();
@@ -38,17 +46,17 @@ export default function Catalog() {
     setCustomerName('');
   };
 
-  // Filtrado de calcas por estado y buscador
+  // Filtrado de calcas por estado, buscador y categorías
   const filteredStickers = stickersData.filter((s) => {
     const matchesSearch = s.code.toLowerCase().includes(searchTerm.toLowerCase());
-    if (filterView === 'disponibles') {
-      return matchesSearch && s.status !== 'vendido';
-    }
-    return matchesSearch;
+    const matchesStatus = filterView === 'disponibles' ? s.status !== 'vendido' : true;
+    const matchesCategory = selectedCategory === 'todas' ? true : s.category === selectedCategory;
+
+    return matchesSearch && matchesStatus && matchesCategory;
   });
 
   return (
-    <section className="catalog-section">
+    <section id="inventario-calcas" className="catalog-section">
       <div className="catalog-container">
         
         {/* Encabezado */}
@@ -60,12 +68,45 @@ export default function Catalog() {
             Todas las calcas a ₡300 cada una • Envíos y entregas a convenir
           </p>
 
-          {/* Tarjeta de SINPE Móvil justo en el encabezado superior */}
-          <div style={{ textAlign: 'center', margin: '15px 0' }}>
-            <SinpeCard numeroSinpe="85643342" />
+          {/* Tarjeta de Pago SINPE Móvil */}
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center', 
+            background: '#12161b', 
+            border: '1px solid #1f2937', 
+            padding: '12px 20px', 
+            borderRadius: '12px', 
+            maxWidth: '450px', 
+            margin: '0 auto 20px auto',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+          }}>
+            <div>
+              <span style={{ fontSize: '0.75rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '1px', display: 'block' }}>
+                Paga vía SINPE Móvil
+              </span>
+              <strong style={{ fontSize: '1.2rem', color: '#00e676', letterSpacing: '1px' }}>
+                📱 {sinpeNumber}
+              </strong>
+            </div>
+            <button 
+              onClick={handleCopySinpe}
+              style={{
+                background: copied ? '#00e676' : '#1f2937',
+                color: copied ? '#000' : '#fff',
+                border: '1px solid #374151',
+                padding: '6px 16px',
+                borderRadius: '8px',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              {copied ? '¡Copiado!' : 'Copiar'}
+            </button>
           </div>
 
-          {/* Buscador y Filtros */}
+          {/* Buscador y Filtros de Estado */}
           <div className="catalog-search-wrapper">
             <input 
               type="text" 
@@ -90,6 +131,37 @@ export default function Catalog() {
                 Ver Todo ({stickersData.length})
               </button>
             </div>
+
+            {/* Pestañas de Categorías */}
+            <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '8px', marginTop: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              {[
+                { id: 'todas', label: ' Todas' },
+                { id: 'letras', label: ' Letras' },
+                { id: 'logos', label: ' Logos' },
+                { id: 'criaturas', label: ' Criaturas' },
+                { id: 'premium', label: ' Premium' }
+              ].map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  style={{
+                    background: selectedCategory === cat.id ? '#00e676' : '#12161b',
+                    color: selectedCategory === cat.id ? '#000' : '#9ca3af',
+                    border: '1px solid #2d3748',
+                    padding: '8px 14px',
+                    borderRadius: '8px',
+                    fontWeight: 'bold',
+                    fontSize: '0.85rem',
+                    cursor: 'pointer',
+                    whiteSpace: 'nowrap',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+
           </div>
         </div>
 
@@ -148,7 +220,7 @@ export default function Catalog() {
         </div>
       </div>
 
-      {/* Modal con ZOOM */}
+      {/* Modal con ZOOM enfocado a la calca */}
       {selectedSticker && (
         <div 
           onClick={() => setSelectedSticker(null)}
