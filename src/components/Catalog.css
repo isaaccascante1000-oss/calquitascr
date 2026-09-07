@@ -452,39 +452,85 @@
 
 /* Pantallas extra pequeñas (< 380px) */
 @media (max-width: 380px) {
+  /* --- Estilos generales base para el catálogo --- */
+.catalog-section {
+  padding: 2rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.catalog-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.catalog-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Grilla de calcas adaptable (celulares vs escritorio) */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+/* --- ADAPTACIÓN MÓVIL (Pantallas menores a 768px) --- */
+@media (max-width: 768px) {
   .catalog-section {
-    padding: 1.5rem 0.4rem;
+    padding: 1rem 0.5rem; /* Reduce márgenes laterales en celulares */
   }
 
+  .catalog-title {
+    font-size: 1.8rem; /* Hace el título principal más compacto */
+  }
+
+  .catalog-subtitle {
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Ajustar la barra de búsqueda y filtros en columna para que no se salgan */
+  .catalog-search-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 0.5rem;
+  }
+
+  .catalog-search-input {
+    width: 100% !important;
+    font-size: 0.95rem;
+  }
+
+  /* Pestañas de categorías y filtros con desplazamiento horizontal fluido */
+  .catalog-filter-tabs,
+  .catalog-category-wrapper {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 8px;
+    width: 100%;
+    justify-content: flex-start !important;
+  }
+
+  /* Tarjetas de las calcas más cómodas en móviles */
   .catalog-grid {
-    gap: 6px;
+    grid-template-columns: repeat(2, 1fr); /* Exactamente 2 columnas limpias en celulares */
+    gap: 10px;
   }
 
   .catalog-card {
-    padding: 0.45rem 0.3rem;
-    border-radius: 10px;
+    padding: 8px;
   }
 
-  .catalog-card-image-box {
-    height: 85px;
-    padding: 0.25rem;
-  }
-
-  .catalog-card-title {
-    font-size: 0.75rem;
-  }
-
-  .catalog-card-price {
-    font-size: 0.72rem;
-  }
-
-  .catalog-card-btn {
-    padding: 0.4rem 0.1rem;
-    font-size: 0.65rem;
-  }
-
-  .catalog-sold-badge {
-    font-size: 0.55rem;
-    padding: 0.18rem 0.4rem;
+  /* Modal de reserva adaptado a pantallas pequeñas */
+  .catalog-modal-content {
+    width: 90% !important;
+    max-width: 320px;
+    padding: 20px 15px;
   }
 }
