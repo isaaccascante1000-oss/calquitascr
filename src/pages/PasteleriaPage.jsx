@@ -64,16 +64,16 @@ export default function PasteleriaPage() {
   };
 
   return (
-    <div style={{ padding: '32px', color: '#ffffff', maxWidth: '1200px', margin: '0 auto', fontFamily: 'system-ui, sans-serif' }}>
+    <div className="page-container pasteleria-container" style={{ padding: '32px', color: '#ffffff', maxWidth: '1200px', margin: '0 auto', fontFamily: 'system-ui, sans-serif', width: '100%', boxSizing: 'border-box' }}>
       
       {/* Encabezado y Navegación Interna */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #1f2937', paddingBottom: '16px', marginBottom: '24px' }}>
-        <div>
+      <div className="pasteleria-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #1f2937', paddingBottom: '16px', marginBottom: '24px', width: '100%' }}>
+        <div className="pasteleria-title-box" style={{ width: '100%' }}>
           <h1 style={{ fontSize: '2rem', color: '#ff69b4', margin: 0, textTransform: 'uppercase', letterSpacing: '2px' }}>Repostería</h1>
           <p style={{ color: '#9ca3af', margin: '4px 0 0 0' }}>Catálogo y Creación Personalizada</p>
         </div>
         
-        <div style={{ display: 'flex', gap: '12px' }}>
+        <div className="pasteleria-nav-tabs" style={{ display: 'flex', gap: '12px' }}>
           <button onClick={() => setActiveTab('catalogo')} style={{ background: activeTab === 'catalogo' ? '#ff69b4' : '#1f2937', color: activeTab === 'catalogo' ? '#000' : '#fff', border: 'none', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>Catálogo</button>
           <button onClick={() => setActiveTab('simulador')} style={{ background: activeTab === 'simulador' ? '#ff69b4' : '#1f2937', color: activeTab === 'simulador' ? '#000' : '#fff', border: 'none', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>Simulador 3D</button>
           

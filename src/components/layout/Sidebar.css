@@ -70,17 +70,6 @@
 /* Botón de menú móvil oculto por defecto en PC */
 .mobile-menu-btn {
   display: none;
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  z-index: 1100;
-  background: #12161b;
-  color: #fff;
-  border: 1px solid #2d3748;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  cursor: pointer;
 }
 
 .sidebar-overlay {
@@ -89,8 +78,22 @@
 
 /* --- ADAPTACIÓN MÓVIL --- */
 @media (max-width: 768px) {
+  /* Botón hamburguesa y X flotante en la derecha para móviles */
   .mobile-menu-btn {
-    display: block !important; /* Muestra el botón en celulares */
+    display: block !important;
+    position: fixed;
+    top: 15px;
+    right: 15px; /* Posicionado a la derecha */
+    left: auto;
+    z-index: 1100;
+    background: #18181b;
+    color: #fff;
+    border: 1px solid #27272a;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
 
   .sidebar-container {
@@ -99,8 +102,10 @@
     left: -280px; /* Escondido fuera de la pantalla a la izquierda */
     width: 260px !important;
     height: 100vh;
-    z-index: 1050;
+    background-color: #09090b !important; /* Fondo 100% opaco y sólido en móviles */
+    z-index: 1050 !important;
     transition: left 0.3s ease-in-out;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.9);
   }
 
   .sidebar-container.open {
@@ -114,7 +119,9 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1040;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 1040 !important;
   }
 }

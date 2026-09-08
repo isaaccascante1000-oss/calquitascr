@@ -1,5 +1,5 @@
 /* =========================================================
-   CATALOG STYLES - RESPONSIVE (DESKTOP & MOBILE 3-COLUMNS)
+   CATALOG STYLES - RESPONSIVE (DESKTOP & MOBILE)
    ========================================================= */
 
 .catalog-section {
@@ -9,11 +9,14 @@
   color: #ffffff;
   position: relative;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .catalog-container {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Header & Search */
@@ -96,6 +99,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 1.8rem;
+  width: 100%;
 }
 
 .catalog-card {
@@ -138,6 +142,7 @@
   overflow: hidden;
   border: 1px solid #27272a;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .catalog-card-image {
@@ -347,16 +352,22 @@
 
 /* =========================================================
    RESPONSIVE DESIGN: MOBILE OPTIMIZATIONS (< 768px)
-   FORZADO EXACTO DE 3 COLUMNAS FLUIDAS Y LEGIBLES
    ========================================================= */
 
 @media (max-width: 768px) {
   .catalog-section {
-    padding: 1.8rem 0.6rem;
+    padding-top: 60px !important; /* Espacio extra arriba para que la X/botón no tape nada */
+    padding-bottom: 2rem !important;
   }
 
   .catalog-header {
-    margin-bottom: 1.8rem;
+    margin-top: 10px !important;
+  }
+}
+
+  .catalog-container {
+    width: 100% !important;
+    padding: 0 4px;
   }
 
   .catalog-title {
@@ -364,139 +375,12 @@
   }
 
   .catalog-subtitle {
-    font-size: 0.85rem;
-  }
-
-  .catalog-search-wrapper {
-    margin-top: 1.2rem;
-    gap: 0.8rem;
-  }
-
-  .catalog-search-input {
-    max-width: 100%;
-    padding: 0.65rem 0.9rem;
-    font-size: 0.85rem;
-    border-radius: 10px;
-  }
-
-  .catalog-filter-btn {
-    padding: 0.35rem 0.8rem;
-    font-size: 0.78rem;
-  }
-
-  /* Grid forzado a exactamente 3 columnas */
-  .catalog-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 8px; /* Espaciado uniforme para 3 columnas en pantallas móviles */
-  }
-
-  .catalog-card {
-    padding: 0.55rem 0.4rem;
-    border-radius: 12px;
-  }
-
-  .catalog-card-image-box {
-    height: 100px; /* Altura optimizada para vista móvil de 3 columnas */
-    padding: 0.35rem;
-    border-radius: 8px;
-  }
-
-  .catalog-card-title {
-    margin: 0.45rem 0 0.1rem;
-    font-size: 0.85rem;
-    font-weight: 800;
-  }
-
-  .catalog-card-price {
-    margin: 0 0 0.45rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-  }
-
-  .catalog-card-btn {
-    padding: 0.45rem 0.2rem;
-    font-size: 0.72rem;
-    border-radius: 6px;
-    font-weight: 800;
-  }
-
-  /* Cartel de AGOTADA ajustado proporcionalmente para tarjetas compactas */
-  .catalog-sold-badge {
-    font-size: 0.62rem;
-    padding: 0.22rem 0.5rem;
-    letter-spacing: 1px;
-    border-width: 1.5px;
-    box-shadow: 0 2px 10px rgba(220, 38, 38, 0.7);
-  }
-
-  /* Modal móvil */
-  .catalog-modal-content {
-    padding: 1.4rem 1.1rem;
-    border-radius: 16px;
-  }
-
-  .catalog-modal-image-box {
-    height: 220px;
-    margin: 0.9rem 0;
-  }
-
-  .catalog-modal-title {
-    font-size: 1.3rem;
-  }
-
-  .catalog-modal-price {
-    font-size: 1.15rem;
-    margin-bottom: 0.9rem;
-  }
-}
-
-/* Pantallas extra pequeñas (< 380px) */
-@media (max-width: 380px) {
-  /* --- Estilos generales base para el catálogo --- */
-.catalog-section {
-  padding: 2rem 1rem;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.catalog-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.catalog-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-/* Grilla de calcas adaptable (celulares vs escritorio) */
-.catalog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 16px;
-  width: 100%;
-}
-
-/* --- ADAPTACIÓN MÓVIL (Pantallas menores a 768px) --- */
-@media (max-width: 768px) {
-  .catalog-section {
-    padding: 1rem 0.5rem; /* Reduce márgenes laterales en celulares */
-  }
-
-  .catalog-title {
-    font-size: 1.8rem; /* Hace el título principal más compacto */
-  }
-
-  .catalog-subtitle {
     font-size: 0.9rem;
     padding: 0 0.5rem;
   }
 
-  /* Ajustar la barra de búsqueda y filtros en columna para que no se salgan */
   .catalog-search-wrapper {
-    display: flex;
-    flex-direction: column;
+    margin-top: 1.2rem;
     gap: 10px;
     padding: 0 0.5rem;
   }
@@ -506,74 +390,74 @@
     font-size: 0.95rem;
   }
 
-  /* Pestañas de categorías y filtros con desplazamiento horizontal fluido */
+  /* Pestañas de categorías deslizables en una sola fila limpia */
   .catalog-filter-tabs,
-  .catalog-category-wrapper {
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding-bottom: 8px;
-    width: 100%;
-    justify-content: flex-start !important;
-  }
-
-  /* Tarjetas de las calcas más cómodas en móviles */
-  .catalog-grid {
-    grid-template-columns: repeat(2, 1fr); /* Exactamente 2 columnas limpias en celulares */
-    gap: 10px;
-  }
-
-  .catalog-card {
-    padding: 8px;
-  }
-
-  /* Modal de reserva adaptado a pantallas pequeñas */
-  .catalog-modal-content {
-    width: 90% !important;
-    max-width: 320px;
-    padding: 20px 15px;
-  }
-}
-/* --- CORRECCIÓN DEFINITIVA PARA MÓVILES (Menos de 768px) --- */
-@media (max-width: 768px) {
-  /* Forzar que el contenedor principal ocupe todo el ancho sin que el sidebar estorbe */
-  .catalog-section {
-    padding: 10px 5px !important;
-    width: 100% !important;
-    box-sizing: border-box;
-  }
-
-  .catalog-container {
-    width: 100% !important;
-    padding: 0 5px;
-  }
-
-  /* Arreglar los botones de categorías para que NO se apilen verticalmente */
   .catalog-category-wrapper {
     display: flex !important;
     flex-direction: row !important;
     overflow-x: auto !important;
     white-space: nowrap !important;
-    gap: 8px !important;
-    padding-bottom: 10px !important;
+    padding-bottom: 8px !important;
     width: 100% !important;
     justify-content: flex-start !important;
     -webkit-overflow-scrolling: touch;
-  }
-
-  .catalog-category-wrapper button {
-    flex: 0 0 auto !important; /* Evita que se encojan o se pongan en columna */
-  }
-
-  /* Tarjetas de calcas a 2 columnas perfectas en móvil */
-  .catalog-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
     gap: 8px !important;
   }
 
-  /* Ajustar textos grandes de la portada (Hero) para que no se salgan */
-  .hero-title, h1 {
-    font-size: 2rem !important;
-    line-height: 1.2 !important;
+  .catalog-category-wrapper button {
+    flex: 0 0 auto !important;
   }
+
+  /* Cuadrícula limpia de 2 columnas con espacio adecuado */
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .catalog-card {
+    padding: 12px 8px !important;
+    border-radius: 12px !important;
+  }
+
+  /* Imagen amplia y clara para móviles */
+  .catalog-card-image-box {
+    width: 100% !important;
+    height: 140px !important;
+    padding: 0.5rem;
+  }
+
+  .catalog-card-image {
+    max-height: 130px !important;
+  }
+
+  .catalog-card-title {
+    font-size: 1.1rem !important;
+    margin: 0.8rem 0 0.2rem !important;
+  }
+
+  .catalog-card-price {
+    font-size: 1rem !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  .catalog-card-btn {
+    padding: 8px 4px !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Modal adaptado para celulares */
+  .catalog-modal-content {
+    width: 92% !important;
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+  }
+
+  .catalog-modal-content {
+  padding-top: 2.5rem !important; /* Baja el contenido dentro de la ventana para dejarle espacio a la X */
+}
+
+.catalog-modal-close {
+  top: 12px !important;
+  right: 14px !important;
+  z-index: 1010 !important;
 }

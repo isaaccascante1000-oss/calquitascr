@@ -34,4 +34,52 @@ body {
   header {
     padding: 0.8rem 1rem !important;
   }
+
+  .pasteleria-container {
+    padding-top: 60px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .pasteleria-header {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+
+  .pasteleria-title-box {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .pasteleria-title-box h1 {
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 1.8rem !important;
+  }
+
+  .pasteleria-title-box p {
+    text-align: center !important;
+  }
+
+  .pasteleria-nav-tabs {
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .barbery-container {
+    padding-top: 70px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .page-container {
+    box-sizing: border-box !important;
+  }
 }

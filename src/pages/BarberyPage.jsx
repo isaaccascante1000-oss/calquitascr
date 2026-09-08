@@ -67,7 +67,7 @@ export default function BarberyPage() {
   };
 
   return (
-    <div style={{ padding: '32px', color: '#ffffff', maxWidth: '1000px', margin: '0 auto' }}>
+    <div className="page-container barbery-container" style={{ padding: '32px', color: '#ffffff', maxWidth: '1000px', margin: '0 auto' }}>
       
       {/* Encabezado */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px', borderBottom: '1px solid #1f2937', paddingBottom: '16px' }}>
