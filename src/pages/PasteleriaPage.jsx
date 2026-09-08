@@ -241,7 +241,14 @@ export default function PasteleriaPage() {
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.8)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
           <form onSubmit={handleLogin} style={{ background: '#12161b', padding: '24px', borderRadius: '12px', border: '1px solid #374151', width: '300px' }}>
             <h3 style={{ marginBottom: '16px' }}>Acceso Pastelería</h3>
-            <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} style={{ width: '100%', padding: '10px', marginBottom: '16px', borderRadius: '4px', border: '1px solid #374151', background: '#0d0f12', color: '#fff' }} />
+            <input 
+              type="password" 
+              autoComplete="current-password"
+              placeholder="Contraseña" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              style={{ width: '100%', padding: '10px', marginBottom: '16px', borderRadius: '4px', border: '1px solid #374151', background: '#0d0f12', color: '#fff', boxSizing: 'border-box' }} 
+            />
             <div style={{ display: 'flex', gap: '8px' }}>
               <button type="submit" style={{ flex: 1, padding: '10px', background: '#ff69b4', color: '#000', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: 'pointer' }}>Entrar</button>
               <button type="button" onClick={() => setShowLoginModal(false)} style={{ flex: 1, padding: '10px', background: '#374151', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Cerrar</button>

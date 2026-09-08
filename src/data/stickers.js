@@ -72,6 +72,14 @@ export const salesHistory = [
     date: '2026-09-07',
     status: 'vendido',
     paymentStatus: 'completo'
+  },
+  {
+    code: 'K60X',
+    client: 'Barry',
+    price: '₡300',
+    date: '2026-09-08',
+    status: 'vendido',
+    paymentStatus: 'completo'
   }
 ];
 

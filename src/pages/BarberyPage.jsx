@@ -234,6 +234,7 @@ export default function BarberyPage() {
             <h3 style={{ marginBottom: '12px', color: '#fff' }}>Acceso Administrativo</h3>
             <input 
               type="password"
+              autoComplete="current-password"
               placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
