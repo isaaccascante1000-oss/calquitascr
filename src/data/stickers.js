@@ -80,6 +80,30 @@ export const salesHistory = [
     date: '2026-09-08',
     status: 'vendido',
     paymentStatus: 'completo'
+  },
+  {
+    code: 'K80D',
+    client: 'Amigas',
+    price: '₡300',
+    date: '2026-09-08',
+    status: 'vendido',
+    paymentStatus: 'completo'
+  },
+  {
+    code: 'K50C',
+    client: 'Amigas',
+    price: '₡300',
+    date: '2026-09-08',
+    status: 'vendido',
+    paymentStatus: 'completo'
+  },
+  {
+    code: 'K20A',
+    client: 'Amigas',
+    price: '₡300',
+    date: '2026-09-08',
+    status: 'vendido',
+    paymentStatus: 'completo'
   }
 ];
 
