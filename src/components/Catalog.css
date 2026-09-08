@@ -534,3 +534,46 @@
     padding: 20px 15px;
   }
 }
+/* --- CORRECCIÓN DEFINITIVA PARA MÓVILES (Menos de 768px) --- */
+@media (max-width: 768px) {
+  /* Forzar que el contenedor principal ocupe todo el ancho sin que el sidebar estorbe */
+  .catalog-section {
+    padding: 10px 5px !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .catalog-container {
+    width: 100% !important;
+    padding: 0 5px;
+  }
+
+  /* Arreglar los botones de categorías para que NO se apilen verticalmente */
+  .catalog-category-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    gap: 8px !important;
+    padding-bottom: 10px !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .catalog-category-wrapper button {
+    flex: 0 0 auto !important; /* Evita que se encojan o se pongan en columna */
+  }
+
+  /* Tarjetas de calcas a 2 columnas perfectas en móvil */
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* Ajustar textos grandes de la portada (Hero) para que no se salgan */
+  .hero-title, h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+}

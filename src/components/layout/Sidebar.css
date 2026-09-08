@@ -67,3 +67,54 @@
   background-color: #1f2937;
   color: #00e676; /* O cámbialo a #ffffff si no quieres que resalte en verde */
 }
+/* Botón de menú móvil oculto por defecto en PC */
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1100;
+  background: #12161b;
+  color: #fff;
+  border: 1px solid #2d3748;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+/* --- ADAPTACIÓN MÓVIL --- */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block !important; /* Muestra el botón en celulares */
+  }
+
+  .sidebar-container {
+    position: fixed !important;
+    top: 0;
+    left: -280px; /* Escondido fuera de la pantalla a la izquierda */
+    width: 260px !important;
+    height: 100vh;
+    z-index: 1050;
+    transition: left 0.3s ease-in-out;
+  }
+
+  .sidebar-container.open {
+    left: 0 !important; /* Se desliza hacia adentro cuando se presiona el botón */
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1040;
+  }
+}
