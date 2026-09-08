@@ -57,7 +57,7 @@ export default function Sidebar() {
           <NavLink 
             to="/barbery" 
             onClick={closeSidebar}
-            className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+            className={({ isActive }) => (isActive ? 'nav-link nav-link-barbery active' : 'nav-link nav-link-barbery')}
           >
             Barbery
           </NavLink>

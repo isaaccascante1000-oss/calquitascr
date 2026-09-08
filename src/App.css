@@ -221,11 +221,18 @@
   }
 
   .barbery-container {
-    padding-top: 70px !important;
+    padding-top: 65px !important;
     padding-left: 15px !important;
     padding-right: 15px !important;
     width: 100% !important;
     box-sizing: border-box !important;
+  }
+
+  .barbery-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    width: 100% !important;
   }
 
   .page-container {
