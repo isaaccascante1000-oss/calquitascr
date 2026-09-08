@@ -35,6 +35,7 @@ export default function Sidebar() {
             to="/" 
             onClick={closeSidebar}
             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+            end
           >
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <div className="brand-dots" style={{ marginRight: '8px' }}>
@@ -51,7 +52,7 @@ export default function Sidebar() {
             onClick={closeSidebar}
             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
           >
-            Pasteleria
+            Pastelería
           </NavLink>
 
           <NavLink 
@@ -59,7 +60,9 @@ export default function Sidebar() {
             onClick={closeSidebar}
             className={({ isActive }) => (isActive ? 'nav-link nav-link-barbery active' : 'nav-link nav-link-barbery')}
           >
-            Barbery
+            <span className="brand-blue">barbery </span>
+            <span className="brand-white">Cut </span>
+            <span className="brand-red">Loyalty</span>  
           </NavLink>
         </nav>
       </aside>

@@ -67,15 +67,32 @@
   color: #00e676;
 }
 
-/* 💈 ESTILO EXCLUSIVO ACTIVO BARBERY (ISAAC CUT CLUB) */
+/* ESTILO EXCLUSIVO ACTIVO BARBERY (ISAAC CUT CLUB) */
 .nav-link.active[href*="barbery"],
 .nav-link-barbery.active {
-  background-color: #18181b !important;
-  color: #3b82f6 !important;
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  background-color: #1a1e26 !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
   border-left: 4px solid #ef4444 !important;
-  box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3);
-  font-weight: 600;
+  border-radius: 8px !important;
+}
+
+/* Forzar que las letras mantengan su color azul, blanco y rojo permanentemente */
+.nav-link-barbery .brand-blue,
+.nav-link.active[href*="barbery"] .brand-blue,
+.nav-link-barbery.active .brand-blue {
+  color: #3b82f6 !important;
+}
+
+.nav-link-barbery .brand-white,
+.nav-link.active[href*="barbery"] .brand-white,
+.nav-link-barbery.active .brand-white {
+  color: #ffffff !important;
+}
+
+.nav-link-barbery .brand-red,
+.nav-link.active[href*="barbery"] .brand-red,
+.nav-link-barbery.active .brand-red {
+  color: #ef4444 !important;
 }
 
 .nav-link-barbery:hover {
@@ -85,7 +102,6 @@
 .nav-link.active[href*="barbery"]:hover,
 .nav-link-barbery.active:hover {
   background-color: #1f2937 !important;
-  color: #60a5fa !important;
 }
 /* Botón de menú móvil oculto por defecto en PC */
 .mobile-menu-btn {
