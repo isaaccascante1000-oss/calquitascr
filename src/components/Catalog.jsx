@@ -38,7 +38,7 @@ export default function Catalog() {
       return;
     }
 
-    const message = `¡Hola! Quisiera reservar la calca *${selectedSticker.code}* de ₡300.%0A%0A*Cliente:* ${customerName}`;
+    const message = `¡Hola! Quisiera reservar la calca *${selectedSticker.code}* de ${selectedSticker.price}.%0A%0A*Cliente:* ${customerName}`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
     window.open(whatsappUrl, '_blank');
@@ -65,7 +65,7 @@ export default function Catalog() {
             Inventario de Calcas
           </h2>
           <p className="catalog-subtitle">
-            Todas las calcas a ₡300 cada una • Envíos y entregas a convenir
+            Calcas a ₡300 y Premium a ₡400 cada una • Envíos y entregas a convenir
           </p>
 
           {/* Tarjeta de Pago SINPE Móvil */}

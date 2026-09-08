@@ -45,7 +45,7 @@ export default function Hero({ onExplore }) {
         marginBottom: '2.5rem',
         lineHeight: '1.6'
       }}>
-        Catálogo exclusivo de alta durabilidad por solo <strong style={{ color: '#25D366' }}>₡300</strong> cada una. Seleccioná y apartá directamente a WhatsApp.
+        Catálogo exclusivo de alta durabilidad desde <strong style={{ color: '#25D366' }}>₡300</strong> (Premium a <strong style={{ color: '#25D366' }}>₡400</strong>). Seleccioná y apartá directamente a WhatsApp.
       </p>
 
       <button 

@@ -82,7 +82,7 @@ export const soldCodes = salesHistory.map(item => item.code.toUpperCase());
 const explicitCategories = {
   'K10A': 'letras',      // Pones el código de la calca exacto : y la categoría entre comillas
   'K30H': 'letras',     // Las categorías válidas son: 'letras', 'logos', 'criaturas', 'premium'
-  'K90H': 'letra ',
+  'K90H': 'letras',
   'K11N': 'criaturas',
   'K70P': 'logos',
   'K10F': 'premium',
@@ -108,16 +108,11 @@ const explicitCategories = {
   'K70B': 'logos',
   'K90Z': 'criaturas',
   'K90Y': 'logos',
-  'K30H': 'letras',
   'K10Z': 'premium',
   'K30G': 'premium',
   'K60Z': 'criaturas',
   'K80C': 'criaturas',
-  'K11N': 'premium',
   'K40P': 'premium',
-
-
-
 };
 
 // Función auxiliar para asignar la categoría de forma precisa
@@ -147,11 +142,12 @@ export const stickersData = Object.keys(imageModules).map((path, index) => {
   const rotationAngle = rotationsByCode[uniqueCode] !== undefined ? rotationsByCode[uniqueCode] : 0;
   const isSold = soldCodes.includes(uniqueCode.toUpperCase());
   const assignedCategory = getCategoryForSticker(uniqueCode);
+  const price = assignedCategory === 'premium' ? '₡400' : '₡300';
 
   return {
     id: fileName,
     code: uniqueCode,
-    price: '₡300',
+    price: price,
     rotate: rotationAngle,
     image: imageModules[path].default,
     category: assignedCategory, // Categoría asignada para los filtros
