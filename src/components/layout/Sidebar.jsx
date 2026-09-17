@@ -64,6 +64,14 @@ export default function Sidebar() {
             <span className="brand-white">Cut </span>
             <span className="brand-red">Loyalty</span>  
           </NavLink>
+
+          <NavLink 
+            to="/admin/ventas" 
+            onClick={closeSidebar}
+            className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+          >
+            Reporte de Ventas
+          </NavLink>
         </nav>
       </aside>
     </>
