@@ -3,14 +3,24 @@ import React, { createContext, useContext, useState } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(() => {
+    return sessionStorage.getItem('isAuth') === 'true';
+  });
 
-  const login = () => {
-    setIsAuth(true);
-    return true;
+  const login = (username, password) => {
+    const user = (username || '').trim();
+    const pass = (password || '').trim();
+
+    if (user === 'admin' && pass === 'Admin2026!') {
+      sessionStorage.setItem('isAuth', 'true');
+      setIsAuth(true);
+      return true;
+    }
+    return false;
   };
 
   const logout = () => {
+    sessionStorage.removeItem('isAuth');
     setIsAuth(false);
   };
 
